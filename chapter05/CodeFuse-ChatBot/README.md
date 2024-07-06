@@ -1,0 +1,68 @@
+# CodeFuse-ChatBot实践
+
+## 一、CodeFuse-ChatBot安装
+
+```shell
+# 建立Python3.9虚拟环境
+conda create --name devopsgpt python=3.9 -y
+conda activate devopsgpt
+# 下载源码
+git clone https://github.com/codefuse-ai/codefuse-chatbot
+cd codefuse-chatbot
+git checkout e5898b0
+# 安装依赖库
+pip install -r requirements.txt --use-pep517 \
+-i https://pypi.mirrors.ustc.edu.cn/simple
+```
+
+## 二、下载模型
+
+```shell
+wget https://e.aliendao.cn/model_download.py
+# 下载大语言模型
+# 模型下载到以下目录：dataroot/models/THUDM/chatglm3-6b
+python model_download.py --e \
+--repo_id THUDM/chatglm3-6b \
+--token YPY8KHDQ2NAHQ2SG
+# 下载Embedding模型
+# 模型下载到以下目录：dataroot/models/shibing624/text2vec-base-chinese 
+python model_download.py --e \
+--repo_id shibing624/text2vec-base-chinese \
+--token YPY8KHDQ2NAHQ2SG
+```
+
+## 三、CodeFuse-ChatBot配置
+
+```shell
+# 复制模型配置文件
+cp ./configs/model_config.py.example ./configs/model_config.py
+# 复制服务配置文件
+cp ./configs/server_config.py.example ./configs/server_config.py
+# 在./configs/model_config.py的最后增加大语言模型和Embedding模型的配置
+llm_model_dict = {'chatglm3-6b': {
+'local_model_path': '../dataroot/models/THUDM/chatglm3-6b', 
+'api_base_url': 'http://localhost:8888/v1', 'api_key': 'EMPTY'}}
+embedding_model_dict = {"text2vec-base": 
+"../dataroot/models/shibing624/text2vec-base-chinese"}
+```
+
+## 四、CodeFuse-ChatBot运行
+
+```shell
+cd examples
+# 方式1，无docker环境运行
+SANDBOX_DO_REMOTE=false DOCKER_SERVICE=false LLM_MODEL=chatglm3-6b \
+API_BASE_URL=http://127.0.0.1:8888/v1 python start.py
+# 方式2，有docker环境运行
+LLM_MODEL=chatglm3-6b API_BASE_URL=http://127.0.0.1:8888/v1 \
+python start.py
+# 在浏览器访问
+http://IP地址:8501/
+```
+
+## 五、停止服务
+
+```shell
+python stop.py或sudo pkill -f -9 python
+```
+
