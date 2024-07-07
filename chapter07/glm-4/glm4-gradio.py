@@ -1,64 +1,58 @@
+from transformers import AutoModel, AutoTokenizer
 import gradio as gr
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
-from threading import Thread
-
-device = "cuda" if torch.cuda.is_available() else "auto"
-model_path = './dataroot/models/NousResearch/Meta-Llama-3-8B-Instruct'
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForCausalLM.from_pretrained(
-    model_path,
-    device_map=device,
-    torch_dtype=torch.float16).eval()
-
-terminators = [
-    128001, 128009
-]
+# 置模型路径和加载模型
+model_path = "dataroot/models/THUDM/glm-4-9b-chat"
+tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+model = AutoModel.from_pretrained(model_path, trust_remote_code=True).cuda()
+model = model.eval()
 
 
-def chat_llama3(message: str,
-                   history: list,
-                   temperature: float,
-                   max_new_tokens: int,
-                   top_p: float
-                   ) -> str:
-    chat_history = []
-    for user, assistant in history:
-        chat_history.extend([{"role": "user", "content": user}, {
-                            "role": "assistant", "content": assistant}])
-    chat_history.append({"role": "user", "content": message})
-    input_ids = tokenizer.apply_chat_template(
-        chat_history, return_tensors="pt").to(model.device)
-    streamer = TextIteratorStreamer(
-        tokenizer, timeout=10.0, skip_prompt=True, skip_special_tokens=True)
-    generate_kwargs = dict(
-        input_ids=input_ids,
-        streamer=streamer,
-        max_new_tokens=1024,
-        do_sample=True,
-        temperature=0.6,
-        top_p=0.8,
-        eos_token_id=terminators
-    )
-    t = Thread(target=model.generate, kwargs=generate_kwargs)
-    t.start()
-    outputs = []
-    for text in streamer:
-        outputs.append(text)
-        yield "".join(outputs)
+def predict(input, chatbot, max_length, top_p, temperature, history, past_key_values):
+    """预测函数"""
+    chatbot.append(input)
+    for response, history, past_key_values in model.stream_chat(
+            tokenizer, input, history,
+            past_key_values=past_key_values,
+            return_past_key_values=True,
+            max_length=max_length,
+            top_p=top_p,
+            temperature=temperature):
+        chatbot[-1] = (input, response)
+        yield chatbot, history, past_key_values
 
 
-def chat_bot():
-    chatbot = gr.Chatbot(height=450, label='chat_llama3')
-    with gr.Blocks(fill_height=True) as demo:
-        gr.ChatInterface(
-            fn=chat_llama3,
-            chatbot=chatbot,
-            fill_height=True
-        )
-    return demo
+def reset_state():
+    """清除Chat历史"""
+    return [], [], None
 
 
-if __name__ == "__main__":
-    demo = chat_bot()
-    demo.launch(server_name="0.0.0.0", server_port=6006)
+with gr.Blocks() as demo:
+    """创建Gradio应用程序"""
+    gr.HTML("""<h1 align="center">GLM-4 Demo</h1>""")
+    with gr.Row():
+        with gr.Column(scale=5):
+            chatbot = gr.Chatbot()
+            user_input = gr.Textbox(
+                show_label=False, placeholder="请输入问题...", max_lines=1)
+        with gr.Column(scale=1):
+            clearBtn = gr.Button("清除历史")
+            max_length = gr.Slider(
+                0, 32768, value=8192, step=1.0,
+                label="最大生成长度", interactive=True)
+            top_p = gr.Slider(0, 1, value=0.8, step=0.01,
+                              label="Top P", interactive=True)
+            temperature = gr.Slider(
+                0, 1, value=0.95, step=0.01, label="Temperature",
+                interactive=True)
+
+    history = gr.State([])
+    past_key_values = gr.State(None)
+    user_input.submit(predict, [user_input, chatbot, max_length, top_p,
+                                temperature, history, past_key_values],
+                      [chatbot, history, past_key_values])
+    user_input.submit(lambda x: "", user_input, user_input)
+    clearBtn.click(reset_state, outputs=[
+                   chatbot, history, past_key_values])
+
+# 启动Gradio应用程序
+demo.queue().launch(server_name="0.0.0.0")
