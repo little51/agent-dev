@@ -12,9 +12,12 @@ def load_model_and_tokenizer(model_path):
     global tokenizer
     global model
     tokenizer = AutoTokenizer.from_pretrained(
-        model_path, trust_remote_code=True)
+        model_path,
+        trust_remote_code=True)
     model = AutoModel.from_pretrained(
-        model_path, trust_remote_code=True).cuda()
+        model_path,
+        trust_remote_code=True,
+        torch_dtype=torch.bfloat16).cuda()
     model = model.eval()
 
 
@@ -28,7 +31,8 @@ def load_model_and_tokenizer_lora(model_path):
             trust_remote_code=True,
             torch_dtype=torch.bfloat16
         ).cuda()
-        tokenizer_dir = model.peft_config['default'].base_model_name_or_path
+        tokenizer_dir = model.peft_config[
+            'default'].base_model_name_or_path
     else:
         model = AutoModel.from_pretrained(
             model_path,
@@ -69,7 +73,9 @@ with gr.Blocks() as demo:
         with gr.Column(scale=5):
             chatbot = gr.Chatbot()
             user_input = gr.Textbox(
-                show_label=False, placeholder="请输入问题...", max_lines=1)
+                show_label=False,
+                placeholder="请输入问题...",
+                max_lines=1)
         with gr.Column(scale=1):
             clearBtn = gr.Button("清除历史")
             max_length = gr.Slider(

@@ -642,14 +642,12 @@ async def get_embeddings(request: EmbeddingRequest):
     if isinstance(request.input, str):
         embeddings = [embedding_model.encode(request.input)]
     else:
-        embeddings = [embedding_model.encode(text) for text in request.input]
-    embeddings = [embedding.tolist() for embedding in embeddings]
+        embeddings = [embedding_model.encode(text)
+                      for text in request.input]
+    embeddings = [embedding.tolist()
+                  for embedding in embeddings]
 
     def num_tokens_from_string(string: str) -> int:
-        """
-        Returns the number of tokens in a text string.
-        use cl100k_base tokenizer
-        """
         encoding = tiktoken.get_encoding('cl100k_base')
         num_tokens = len(encoding.encode(string))
         return num_tokens
@@ -666,7 +664,8 @@ async def get_embeddings(request: EmbeddingRequest):
         "model": request.model,
         "object": "list",
         "usage": CompletionUsage(
-            prompt_tokens=sum(len(text.split()) for text in request.input),
+            prompt_tokens=sum(len(text.split())
+                              for text in request.input),
             completion_tokens=0,
             total_tokens=sum(num_tokens_from_string(text)
                              for text in request.input),

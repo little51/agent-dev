@@ -1,6 +1,6 @@
 # GLM-4
 
-## 一、下载代码
+## 一、下载源码
 
 ```shell
 git clone https://github.com/THUDM/GLM-4.git
@@ -13,8 +13,10 @@ git checkout 468a56e
 ```shell
 conda create -n glm4 python=3.10 -y
 conda activate glm4
+# 安装基础依赖库
 pip install -r basic_demo/requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
+# 安装vllm库
 pip install vllm==0.5.1 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
