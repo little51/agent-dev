@@ -1,13 +1,49 @@
 from transformers import AutoModel, AutoTokenizer
 import gradio as gr
-# 置模型路径和加载模型
-model_path = "dataroot/models/THUDM/glm-4-9b-chat"
-tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-model = AutoModel.from_pretrained(model_path, trust_remote_code=True).cuda()
-model = model.eval()
+import os
+import torch
+
+tokenizer = None
+model = None
 
 
-def predict(input, chatbot, max_length, top_p, temperature, history, past_key_values):
+def load_model_and_tokenizer(model_path):
+    """加载模型"""
+    global tokenizer
+    global model
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_path, trust_remote_code=True)
+    model = AutoModel.from_pretrained(
+        model_path, trust_remote_code=True).cuda()
+    model = model.eval()
+
+
+def load_model_and_tokenizer_lora(model_path):
+    """加载Lora微调模型"""
+    global tokenizer
+    global model
+    if os.path.exists(model_path + '/adapter_config.json'):
+        model = AutoModel.from_pretrained(
+            model_dir,
+            trust_remote_code=True,
+            torch_dtype=torch.bfloat16
+        ).cuda()
+        tokenizer_dir = model.peft_config['default'].base_model_name_or_path
+    else:
+        model = AutoModel.from_pretrained(
+            model_path,
+            trust_remote_code=True,
+            torch_dtype=torch.bfloat16
+        ).cuda()
+        tokenizer_dir = model_path
+    tokenizer = AutoTokenizer.from_pretrained(
+        tokenizer_dir, trust_remote_code=True
+    )
+    model = model.eval()
+
+
+def predict(input, chatbot, max_length, top_p, temperature,
+            history, past_key_values):
     """预测函数"""
     chatbot.append(input)
     for response, history, past_key_values in model.stream_chat(
@@ -54,5 +90,8 @@ with gr.Blocks() as demo:
     clearBtn.click(reset_state, outputs=[
                    chatbot, history, past_key_values])
 
-# 启动Gradio应用程序
-demo.queue().launch(server_name="0.0.0.0")
+if __name__ == "__main__":
+    load_model_and_tokenizer("dataroot/models/THUDM/glm-4-9b-chat")
+    # load_model_and_tokenizer_lora("output/checkpoint-500")
+    # 启动Gradio应用程序
+    demo.queue().launch(server_name="0.0.0.0")
