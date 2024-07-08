@@ -67,14 +67,14 @@ python convert_data.py
 #datasets>2.20.0
 # 2、增加一行
 transformers==4.40.2
+# 安装依赖库
+pip install -r finetune_demo/requirements.txt \
+-i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ### 3、微调过程
 
 ```shell
-pip install -r finetune_demo/requirements.txt \
--i https://pypi.mirrors.ustc.edu.cn/simple
-#
 OMP_NUM_THREADS=1 torchrun --standalone \
 --nnodes=1 --nproc_per_node=2  \
 finetune_demo/finetune.py  data/ \

@@ -28,7 +28,9 @@ def convert_to_jsonl(original_data):
                 train_file.write(json.dumps(
                     messages, ensure_ascii=False) + '\n')
             else:
-                dev_file.write(json.dumps(messages, ensure_ascii=False) + '\n')
+                dev_file.write(json.dumps(
+                    messages,
+                    ensure_ascii=False) + '\n')
 
 
 if __name__ == "__main__":
