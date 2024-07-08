@@ -1,0 +1,16 @@
+# Base
+torch==2.1.0
+transformers==4.38.2
+uvicorn==0.28.0
+pydantic==2.6.4
+fastapi==0.110.0
+sse_starlette==2.0.0
+shortuuid==1.0.13
+gradio==4.31.3
+accelerate==0.30.1
+# SFT Training
+datasets==2.19.1
+trl==0.8.6
+bitsandbytes==0.43.1
+peft==0.11.1
+fire==1.16.0
