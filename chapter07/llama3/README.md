@@ -12,10 +12,13 @@ conda activate llama3
 ## 2、安装依赖库
 
 ```shell
-# 1、安装依赖库(requirements.txt复制到llama3)
+# 1、建立源码目录
+mkdir llama3
+cd llama3
+# 2、安装依赖库(requirements.txt复制到llama3)
 pip install -r requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
-# 2、验证PyTorch
+# 3、验证PyTorch
 python -c "import torch; print(torch.cuda.is_available())"
 # 显示True则说明正常，为False需要按错误信息进一步处理
 # 一般的处理方法是合理降低PyTorch版本
@@ -27,7 +30,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 wget https://aliendao.cn/model_download.py
 # 下载大语言模型到以下目录
 # dataroot/models/NousResearch/Meta-Llama-3-8B-Instruct
-python model_download.py \
+python model_download.py --e \
 --repo_id NousResearch/Meta-Llama-3-8B-Instruct \
 --token YPY8KHDQ2NAHQ2SG
 ```
@@ -48,7 +51,7 @@ python llama3-api.py
 
 ```bash
 # 微调
-python llama3-train.py
+CUDA_VISIBLE_DEVICES=0 python llama3-train.py
 # 模型合并
 python merge_lora_weights.py \
 --base_model ./dataroot/models/NousResearch/Meta-Llama-3-8B-Instruct \

@@ -27,7 +27,7 @@ def load_model_and_tokenizer_lora(model_path):
     global model
     if os.path.exists(model_path + '/adapter_config.json'):
         model = AutoModel.from_pretrained(
-            model_dir,
+            model_path,
             trust_remote_code=True,
             torch_dtype=torch.bfloat16
         ).cuda()

@@ -1,20 +1,14 @@
 import torch
 from datasets import load_dataset
 from trl import SFTTrainer
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer, \
+    BitsAndBytesConfig, TrainingArguments
 from peft import LoraConfig
 import time
 import argparse
 
 
-def load_model(load_in_8bit, model_path, data_file):
-    # 装载模型和数据集
-    data = load_dataset(
-        "json", data_files=data_file)
-    # 数据切分成2000条的验证集和剩余的训练集
-    dataset = data["train"].train_test_split(
-        test_size=2000, shuffle=True, seed=42
-    )
+def load_model(model_path, load_in_8bit):
     # 根据load_in_8bit判断是否使用8bit量化装载
     bnb_config = BitsAndBytesConfig(
         load_in_8bit=load_in_8bit
@@ -24,13 +18,25 @@ def load_model(load_in_8bit, model_path, data_file):
         model_path,
         quantization_config=bnb_config if load_in_8bit else None,
         torch_dtype=torch.float16,
+        use_cache=False,
         device_map='auto')
     # 启用输入的梯度需求，允许模型输入的梯度被计算和存储
     model.enable_input_require_grads()
 
     tokenizer = AutoTokenizer.from_pretrained(
         model_path, pad_token="<|endoftext|>")
-    return model, tokenizer, dataset
+    return model, tokenizer
+
+
+def _load_dataset(data_file):
+    # 装载模型和数据集
+    data = load_dataset(
+        "json", data_files=data_file)
+    # 数据切分成2000条的验证集和剩余的训练集
+    dataset = data["train"].train_test_split(
+        test_size=2000, shuffle=True, seed=42
+    )
+    return dataset
 
 
 def formatting_prompts_func(examples):
@@ -38,7 +44,9 @@ def formatting_prompts_func(examples):
     output_text = []
     instruction = examples["instruction"]
     response = examples["output"]
-    text = f'''Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request. 
+    text = f'''Below is an instruction that describes a task, 
+    paired with an input that provides further context. 
+    Write a response that appropriately completes the request. 
     ### Instruction:
     {instruction}  
     ### Response:
@@ -97,15 +105,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--load_in_8bit', default=False,
                         action='store_true', required=False)
-    parser.add_argument('--model_path',
-                        default="./dataroot/models/NousResearch/Meta-Llama-3-8B-Instruct",
-                        type=str, required=False)
+    parser.add_argument(
+        '--model_path',
+        default="./dataroot/models/NousResearch/Meta-Llama-3-8B-Instruct",
+        type=str,
+        required=False)
     parser.add_argument('--data_file',
                         default="alpaca_data.json",
                         type=str, required=False)
     args = parser.parse_args()
-    model, tokenizer, dataset = load_model(
-        args.load_in_8bit, args.model_path, args.data_file)
+    model, tokenizer = load_model(
+        args.model_path, args.load_in_8bit)
+    dataset = _load_dataset(args.data_file)
     trainer = prepareTrainer(model, tokenizer, dataset)
     trainer.train()
     trainer.model.save_pretrained(trainer.args.output_dir)

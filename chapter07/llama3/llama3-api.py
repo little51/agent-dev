@@ -162,8 +162,11 @@ def predict_chunk_head(model_id):
         delta=DeltaMessage(role="assistant", content=""),
         finish_reason=None
     )
-    chunk = ChatCompletionResponse(model=model_id, choices=[
-                                   choice_data], object="chat.completion.chunk")
+    chunk = ChatCompletionResponse(
+        model=model_id,
+        choices=[
+            choice_data],
+        object="chat.completion.chunk")
     return chunk
 
 
@@ -173,8 +176,9 @@ def predict_chunk_content(model_id, new_content):
         delta=DeltaMessage(content=new_content),
         finish_reason=None
     )
-    chunk = ChatCompletionResponse(model=model_id, choices=[
-        choice_data], object="chat.completion.chunk")
+    chunk = ChatCompletionResponse(
+        model=model_id, choices=[
+            choice_data], object="chat.completion.chunk")
     return chunk
 
 
@@ -184,8 +188,10 @@ def predict_chunk_stop(model_id):
         delta=DeltaMessage(content=""),
         finish_reason="stop"
     )
-    chunk = ChatCompletionResponse(model=model_id, choices=[
-                                   choice_data], object="chat.completion.chunk")
+    chunk = ChatCompletionResponse(
+        model=model_id,
+        choices=[choice_data],
+        object="chat.completion.chunk")
     return chunk
 
 
@@ -202,7 +208,8 @@ async def predict(query: str, history: List[List[str]], model_id: str):
     input_ids = tokenizer.apply_chat_template(
         chat_history, return_tensors="pt").to(model.device)
     streamer = TextIteratorStreamer(
-        tokenizer, timeout=10.0, skip_prompt=True, skip_special_tokens=True)
+        tokenizer, timeout=10.0, skip_prompt=True,
+        skip_special_tokens=True)
     generate_kwargs = dict(
         input_ids=input_ids,
         streamer=streamer,
