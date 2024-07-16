@@ -55,7 +55,7 @@ dataroot/models/THUDM/glm-4-9b-chat \
 
 ```shell
 conda activate langchain
-python langchain-sample.py
+python langchain-plan-execute.py
 # 测试问题：圆周率的概念，圆周率保留到小数点后6位是多少？它的2次方是多少？
 ```
 

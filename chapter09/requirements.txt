@@ -3,3 +3,4 @@ langchain-openai==0.1.14
 bs4==0.0.2
 gradio==4.37.2
 numexpr==2.10.1
+langchain_experimental==0.0.62
