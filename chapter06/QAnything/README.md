@@ -28,7 +28,7 @@ conda create -n qanything-python python=3.10 -y
 conda activate qanything-python
 git clone -b qanything-python https://github.com/little51/QAnything.git
 cd QAnything
-pip install -e .  -i https://pypi.mirrors.ustc.edu.cn/simple
+pip install -e . -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ## 三、OCR适配GPU

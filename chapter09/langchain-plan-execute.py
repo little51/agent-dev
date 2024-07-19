@@ -77,7 +77,8 @@ def init_agent():
     planner = load_chat_planner(model)
     tools = init_tools()
     executor = load_agent_executor(model, tools, verbose=True)
-    agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
+    agent = PlanAndExecute(planner=planner, executor=executor,
+                           verbose=True)
     return agent
 
 

@@ -1,6 +1,6 @@
 # LangChain案例
 
-## 一、安装Agentscope
+## 一、安装LangChain
 
 ```shell
 # 创建虚拟环境
