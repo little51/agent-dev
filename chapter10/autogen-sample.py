@@ -2,7 +2,7 @@ import autogen
 import gradio as gr
 
 config_list = [
-    {"model": "llama3:8b-instruct-fp16",
+    {"model": "glm-4-9b-chat",
      "base_url": "http://172.16.62.167:8000/v1",
      "api_key": "EMPTY",
      "stream": True,
