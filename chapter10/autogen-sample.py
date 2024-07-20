@@ -3,7 +3,7 @@ import gradio as gr
 
 config_list = [
     {"model": "llama3:8b-instruct-fp16",
-     "base_url": "http://172.16.62.167:11434/v1",
+     "base_url": "http://172.16.62.167:8000/v1",
      "api_key": "EMPTY",
      "stream": True,
      "cache_seed": None
@@ -66,7 +66,7 @@ def chat_with_agent(query: str, history: list):
 
 
 def chat_bot():
-    chatbot = gr.Chatbot(height=450, label='autogen')
+    chatbot = gr.Chatbot(height=600, label='autogen')
     with gr.Blocks(fill_height=True) as demo:
         gr.ChatInterface(
             fn=chat_with_agent,
