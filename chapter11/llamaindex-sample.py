@@ -6,6 +6,7 @@ from llama_index.core import (
     load_index_from_storage,
     Settings
 )
+from llama_index.core.node_parser import SimpleNodeParser
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai import OpenAI
@@ -21,15 +22,6 @@ Settings.embed_model = HuggingFaceEmbedding(
 )
 
 
-def load_index(index_path):
-    if not os.path.exists(index_path + "/docstore.json"):
-        return None
-    storage_context = StorageContext.from_defaults(
-        persist_dir=index_path
-    )
-    return load_index_from_storage(storage_context)
-
-
 def build_index(source_path, index_path):
     if len(os.listdir(source_path)) == 0:
         print("文档文件夹为空")
@@ -39,9 +31,21 @@ def build_index(source_path, index_path):
         return False
     reader = SimpleDirectoryReader(input_dir=source_path)
     documents = reader.load_data()
-    index = VectorStoreIndex.from_documents(documents)
+    parser = SimpleNodeParser.from_defaults(chunk_size=1024,
+                                            chunk_overlap=20)
+    nodes = parser.get_nodes_from_documents(documents)
+    index = VectorStoreIndex(nodes)
     index.storage_context.persist(persist_dir=index_path)
     return True
+
+
+def load_index(index_path):
+    if not os.path.exists(index_path + "/docstore.json"):
+        return None
+    storage_context = StorageContext.from_defaults(
+        persist_dir=index_path
+    )
+    return load_index_from_storage(storage_context)
 
 
 def init_tool(index):

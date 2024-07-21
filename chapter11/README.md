@@ -18,8 +18,10 @@ pip install llama-index-embeddings-huggingface==0.2.2 \
 ## 二、大语言模型服务安装配置
 
 ```shell
-# 下载向量模型
+# 获取模型下载脚本
 wget https://e.aliendao.cn/model_download.py
+# 下载BAAI/bge-small-en-v1.5
+# 下载后的模型文件保存在dataroot/models/BAAI/bge-small-en-v1.5
 python model_download.py --e \
 --repo_id BAAI/bge-small-en-v1.5 \
 --token YPY8KHDQ2NAHQ2SG
