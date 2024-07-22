@@ -11,7 +11,7 @@ os.environ["OPENAI_MODEL_NAME"] = "glm-4-9b-chat"
 os.environ["OPENAI_API_KEY"] = "EMPTY"
 
 
-def stream_chat(input_text) -> Generator:
+def stream_chat(message) -> Generator:
     q = Queue()
     job_done = object()
 
@@ -19,61 +19,59 @@ def stream_chat(input_text) -> Generator:
         for step in step_output:
             if isinstance(step, tuple) and len(step) == 2:
                 if isinstance(step[0], AgentAction):
-                    print("==========agent step begin==========")
-                    # print(step[0].tool)
-                    # print(step[0].tool_input)
-                    # print(step[0].log)
-                    # print(step[1])
-                    q.put(step[0].tool)
-                    print("==========agent step end============")
+                    q.put("### " + step[0].tool)
+                    q.put("## step")
+                    q.put(step[0].log)
+                    q.put("## result")
+                    q.put(step[1])
 
     def init_Crew():
-        researcher = Agent(
-            role="变压器设计师",
-            goal="了解电器和变压器设计的前沿发展",
-            backstory="""您在一家领先的变压器设计企业工作。
-            您的专长在于掌握各种变压器的设计原则。
-            您具有剖析复杂数据和提供可操作见解的诀窍。""",
+        Designer = Agent(
+            role="系统设计师",
+            goal="按照系统分析师的撰写的需求说明书，进行系统设计，形成系统详细设计说明书",
+            backstory="""您在一家专业设计企业工作。
+                您的专长在于掌握各种专业系统的设计原则。
+                您具有系统模块设计、数据计算等技能。""",
             verbose=False,
             allow_delegation=True,
             step_callback=agent_step_callback,
         )
 
-        writer = Agent(
-            role="变压器工艺师",
-            goal="了解电器和变压器制造的前沿发展",
-            backstory="""您在一家领先的变压器设计企业工作。
-            您的专长在于掌握各种变压器的制造工艺原则。
-            您具有剖析复杂数据和提供可操作见解的诀窍。""",
+        Quality_controler = Agent(
+            role="质量控制师",
+            goal="按照系统设计师撰写的系统详细设计说明书，进行质量控制，形成系统设计评估报告",
+            backstory="""您在一家专业设计企业工作。
+                您的专长在于掌握各种专业系统的质量控制原则。
+                您具有系统质量控制、数据计算核对等技能。""",
             verbose=False,
             allow_delegation=True,
             step_callback=agent_step_callback,
         )
 
-        task1 = Task(
-            description="""按以下已知需求设计一款专用变压器，要求有计算过程和公式：
-            50Hz250W变压器，输入电压Vin=115V；输出电压Vo=115V；输出电流Io=2.17A；
-            输出功率Po=250W；频率f=50Hz；效率ȵ=95%；电压调整率Ƌ=5%；温升目标Tu=30k
-            """,
-            expected_output="完整的设计报告，要求1000字，OUT IN CHINESE",
-            agent=researcher,
+        System_Analyst_task = Task(
+            description=message,
+            expected_output="完整的需求说明书，OUT IN CHINESE",
+            agent=System_Analyst,
         )
 
-        task2 = Task(
-            description="""按以下已知需求设计一款专用变压器，并制定制造工艺，要求有计算过程和公式：
-            50Hz250W变压器，输入电压Vin=115V；输出电压Vo=115V；输出电流Io=2.17A；
-            输出功率Po=250W；频率f=50Hz；效率ȵ=95%；电压调整率Ƌ=5%；温升目标Tu=30k
-            """,
-            expected_output="完整的设计报告，要求1000字，OUT IN CHINESE",
-            agent=writer,
+        Designer_task = Task(
+            description=message,
+            expected_output="完整的系统详细设计说明书，OUT IN CHINESE",
+            agent=Designer,
+        )
+
+        Quality_controler_task = Task(
+            description=message,
+            expected_output="完整的系统质量评估报告，OUT IN CHINESE",
+            agent=Quality_controler,
         )
 
         crew = Crew(
-            agents=[researcher, writer],
-            tasks=[task1, task2],
+            agents=[System_Analyst, Designer, Quality_controler],
+            tasks=[System_Analyst_task, Designer_task, Quality_controler_task],
             verbose=1,
             process=Process.sequential,
-            max_iter=3,
+            max_iter=1,
         )
         return crew
 
@@ -100,7 +98,7 @@ def stream_chat(input_text) -> Generator:
             continue
 
 
-def ask_llm(message, history):
+def ask_from_crew(message, history):
     for next_token, content in stream_chat(message):
         print("######################")
         print(content)
@@ -112,5 +110,5 @@ if __name__ == "__main__":
     message = """按以下已知需求设计一款专用变压器，要求有计算过程和公式：
             50Hz250W变压器，输入电压Vin=115V；输出电压Vo=115V；输出电流Io=2.17A；
             输出功率Po=250W；频率f=50Hz；效率ȵ=95%；电压调整率Ƌ=5%；温升目标Tu=30k
-            """,
-    ask_llm("123", [])
+            """
+    ask_from_crew(message, [])
