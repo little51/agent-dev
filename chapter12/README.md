@@ -7,21 +7,18 @@
 conda create -n crewai python=3.10 -y
 # 激活虚拟环境
 conda activate crewai
-# 安装依赖库
-pip install crewai 'crewai[tools]' \
+# 安装crewai库
+pip install crewai==0.36.0 \
+-i https://pypi.mirrors.ustc.edu.cn/simple
+# 安装gradio库
+pip install gradio==4.37.2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ## 二、大语言模型服务安装配置
 
 ```shell
-# 获取模型下载脚本
-wget https://e.aliendao.cn/model_download.py
-# 下载BAAI/bge-small-en-v1.5
-# 下载后的模型文件保存在dataroot/models/BAAI/bge-small-en-v1.5
-python model_download.py --e \
---repo_id BAAI/bge-small-en-v1.5 \
---token YPY8KHDQ2NAHQ2SG
+ollama run llama3:8b-instruct-fp16
 ```
 
 ## 三、运行程序
@@ -29,10 +26,6 @@ python model_download.py --e \
 ```shell
 conda activate crewai
 python crewai-sample.py
+#测试问题：按以下已知需求设计一款专用变压器，完成详尽的系统设计说明书，要求有计算过程和公式：50Hz250W变压器，输入电压Vin=115V；输出电压Vo=115V；输出电流Io=2.17A；输出功率Po=250W；频率f=50Hz；效率ȵ=95%；电压调整率Ƌ=5%；温升目标Tu=30k 
 ```
 
-
-
-
-
-https://github.com/gradio-app/gradio/issues/5345
