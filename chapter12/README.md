@@ -18,7 +18,16 @@ pip install gradio==4.37.2 \
 ## 二、大语言模型服务安装配置
 
 ```shell
+# Ollama
 ollama run llama3:8b-instruct-fp16
+# vLLM
+python -m vllm.entrypoints.openai.api_server \
+--model dataroot/models/THUDM/glm-4-9b-chat \
+--served-model-name glm-4-9b-chat \
+--max-model-len 8192 \
+--trust-remote-code \
+--disable-log-stats
+
 ```
 
 ## 三、运行程序
@@ -26,6 +35,6 @@ ollama run llama3:8b-instruct-fp16
 ```shell
 conda activate crewai
 python crewai-sample.py
-#测试问题：按以下已知需求设计一款专用变压器，完成详尽的系统设计说明书，要求有计算过程和公式：50Hz250W变压器，输入电压Vin=115V；输出电压Vo=115V；输出电流Io=2.17A；输出功率Po=250W；频率f=50Hz；效率ȵ=95%；电压调整率Ƌ=5%；温升目标Tu=30k 
+#测试问题：设计一个AI Agent应用，辅助开发人员完成开发任务
 ```
 
