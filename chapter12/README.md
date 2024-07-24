@@ -1,16 +1,15 @@
-# crewAI案例
+# Autogen案例
 
-## 一、安装crewAI
+## 一、安装Autogen
 
 ```shell
 # 创建虚拟环境
-conda create -n crewai python=3.10 -y
+conda create -n autogen python=3.10 -y
 # 激活虚拟环境
-conda activate crewai
-# 安装crewai库
-pip install crewai==0.36.0 \
+conda activate autogen
+# 安装依赖库
+pip install pyautogen==0.2.18 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
-# 安装gradio库
 pip install gradio==4.37.2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
@@ -18,23 +17,13 @@ pip install gradio==4.37.2 \
 ## 二、大语言模型服务安装配置
 
 ```shell
-# Ollama
 ollama run llama3:8b-instruct-fp16
-# vLLM
-python -m vllm.entrypoints.openai.api_server \
---model dataroot/models/THUDM/glm-4-9b-chat \
---served-model-name glm-4-9b-chat \
---max-model-len 8192 \
---trust-remote-code \
---disable-log-stats
-
 ```
 
 ## 三、运行程序
 
 ```shell
-conda activate crewai
-python crewai-sample.py
-#测试问题：设计一个AI Agent应用，辅助开发人员完成开发任务
+conda activate autogen
+python autogen-sample.py
+# 测试问题：生成格式为：{"instruction":"指令","input":"","output":"指令的答案"}的大约10条人工智能训练集，并进行JSON格式校验
 ```
-

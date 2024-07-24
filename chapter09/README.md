@@ -1,14 +1,14 @@
-# LangChain案例
+# Agentscope案例
 
-## 一、安装LangChain
+## 一、安装Agentscope
 
 ```shell
 # 创建虚拟环境
-conda create -n langchain python=3.10 -y
+conda create -n agentscope python=3.10 -y
 # 激活虚拟环境
-conda activate langchain
+conda activate agentscope
 # 安装依赖库
-pip install -r requirements.txt \
+pip install agentscope==0.0.6a2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
@@ -54,9 +54,12 @@ dataroot/models/THUDM/glm-4-9b-chat \
 ## 三、运行程序
 
 ```shell
-conda activate langchain
-python langchain-plan-execute.py
-# 测试问题：圆周率的概念，圆周率保留到小数点后6位是多少？它的2次方是多少？
+conda activate agentscope
+python agentscope-sample.py
+# 测试问题1
+使用python编程，实现递归列出当前目录下的所有文件，包含子目录，并执行程序
+# 测试问题2
+使用python编程，实现随机生成10个100以内的数字，并进行从小到大排序，并执行程序
 ```
 
 
