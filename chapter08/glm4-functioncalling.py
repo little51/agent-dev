@@ -75,7 +75,7 @@ def multiply(multiplicand: float, multiplier: float):
     return result
 
 
-def parse_function_calling(model_response, messages):
+def parse_llm_response(model_response, messages):
     if model_response.choices[0].message.tool_calls:
         tool_call = model_response.choices[0].message.tool_calls[0]
         args = tool_call.function.arguments
@@ -114,7 +114,7 @@ def llm_call(message: str):
         temperature=0.9
     )
     messages.append(response.choices[0].message.model_dump())
-    return parse_function_calling(response, messages)
+    return parse_llm_response(response, messages)
 
 
 if __name__ == "__main__":
