@@ -24,7 +24,8 @@ class Visual_solve_equations(Agent):
         # 定义数学计算Agent
         self.math_agent = Assistant(
             llm=self.llm,
-            system_message='你扮演一个学生，参考你学过的数学知识进行计算')
+            system_message='你扮演一个学生，' +
+            '参考你学过的数学知识进行计算')
 
     def _run(self, messages: List[Message],
              lang: str = 'zh', **kwargs) -> Iterator[List[Message]]:
@@ -37,14 +38,18 @@ class Visual_solve_equations(Agent):
         new_messages = copy.deepcopy(messages)
         new_messages[-1].content[0]['text'] = str(
             [{"text": new_messages[-1].content[0]['text']}, {
-                "image": new_messages[-1].content[1]['image'].replace("file://", "")}])
-        for rsp in self.image_agent.run(new_messages, lang=lang, **kwargs):
+                "image": new_messages[-1].content[1]['image'].
+                replace("file://", "")}])
+        for rsp in self.image_agent.run(new_messages,
+                                        lang=lang, **kwargs):
             yield rsp
         # 第2个Agen，求解文本中的数学问题
         response = rsp
         new_messages.extend(rsp)
-        new_messages.append(Message('user', '根据以上文本内容求解数学题'))
-        for rsp in self.math_agent.run(new_messages, lang=lang, **kwargs):
+        new_messages.append(Message('user',
+                                    '根据以上文本内容求解数学题'))
+        for rsp in self.math_agent.run(new_messages,
+                                       lang=lang, **kwargs):
             yield response + rsp
 
 
