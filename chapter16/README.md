@@ -35,3 +35,4 @@ python cogvlm2_chat.py
 python image_search.py
 # 访问 http://172.16.62.167:7860/
 ```
+

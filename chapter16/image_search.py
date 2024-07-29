@@ -3,7 +3,7 @@ from langchain.docstore.document import Document
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.vectorstores import Chroma
-from cogvlm2_chat import load_model, generate
+from cogvlm2_chat import generate
 import gradio as gr
 
 vectorstore = None
@@ -35,13 +35,11 @@ def create_vectorstore(split_docs):
     embeddings = SentenceTransformerEmbeddings(
         model_name="./dataroot/models/" +
         "shibing624/text2vec-base-chinese")
-    vectorstore = Chroma.from_documents(split_docs, embeddings)
-    return vectorstore
+    return Chroma.from_documents(split_docs, embeddings)
 
 
 def init_searchengine():
     global vectorstore
-    load_model()
     documents = load_docs("./")
     splited_docs = split_docs(documents)
     vectorstore = create_vectorstore(splited_docs)
@@ -82,7 +80,8 @@ def webui():
                     height="auto",
                     interactive=False
                 )
-        user_input.submit(search_by_text, inputs=user_input, outputs=gallery)
+        user_input.submit(search_by_text, inputs=user_input,
+                          outputs=gallery)
         user_input.submit(lambda x: "", user_input, user_input)
     demo.launch(server_name="0.0.0.0")
 

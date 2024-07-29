@@ -19,5 +19,5 @@ accelerate==0.32.1
 langchain_community==0.2.7
 sentence-transformers==3.0.1
 chromadb==0.5.3
-# Webui
+# Gradio
 gradio==4.37.2

@@ -1,6 +1,6 @@
 import torch
-from PIL import Image
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from PIL import Image
 
 MODEL_PATH = "dataroot/models/" + \
     "THUDM/cogvlm2-llama3-chinese-chat-19B-int4"
@@ -28,6 +28,8 @@ def load_model():
 
 
 def generate(image_path: str):
+    if model is None:
+        load_model()
     image = Image.open(image_path).convert('RGB')
     input_by_model = model.build_conversation_input_ids(
         tokenizer,
@@ -59,6 +61,6 @@ def generate(image_path: str):
 
 
 if __name__ == '__main__':
-    load_model()
-    response = generate('test1.png')
-    print(response)
+    image_file = 'test1.png'
+    response = generate(image_file)
+    print("Image: " + image_file + "\nCogVLM2：" + response)
