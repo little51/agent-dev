@@ -101,8 +101,9 @@ git --version
 ### 5、环境验证
 
 ```shell
-# 创建python虚拟环境
+# 创建虚拟环境
 conda create -n test python=3.10 -y
+# 激活虚拟环境
 conda activate test
 # 安装pytorch
 pip install torch==2.1.2 -i https://pypi.mirrors.ustc.edu.cn/simple
