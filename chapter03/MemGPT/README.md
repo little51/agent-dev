@@ -5,9 +5,11 @@
 ### （1）建立虚拟环境
 
 ```shell
+# 创建虚拟环境
 conda create -n vllm python=3.10 -y
+# 激活虚拟环境
 conda activate vllm
-# 安装vllm及依赖库
+# 安装vllm及其他依赖库
 pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 验证是否安装成功
@@ -38,19 +40,23 @@ python -m vllm.entrypoints.openai.api_server \
 
 ## 2、MemGPT安装配置  
 
-### （1）创建虚拟环境
+### （1）建立虚拟环境
 
 ```shell
+# 创建虚拟环境
 conda create -n memgpt python=3.10 -y
+# 激活虚拟环境
 conda activate memgpt
+# 安装pymemgpt
 pip install 'pymemgpt[local]' -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
-### （2）下载语义向量模型
+### （2）下载向量模型
 
 ```shell
 # 建立工作目录
 mkdir memgpt
+# 切换到工作目录
 cd memgpt
 # 下载模型
 wget https://e.aliendao.cn/model_download.py
@@ -58,10 +64,13 @@ python model_download.py --e \
 --repo_id BAAI/bge-small-en-v1.5 \
 --token YPY8KHDQ2NAHQ2SG
 # 移动模型文件到./BAAI/bge-small-en-v1.5
+# 建目录
 mkdir -p BAAI/bge-small-en-v1.5
+# 批量复制
 cp -R ./dataroot/models/BAAI/bge-small-en-v1.5/* \
 ./BAAI/bge-small-en-v1.5/
-rm -fr ./dataroot
+# 删除原目录
+rm -fr ./dataroot/models/BAAI
 ```
 
 ## 3、AutoGPT智体应用
@@ -74,7 +83,7 @@ memgpt configure
 # 以下为选项
 Select LLM inference provider: local
 Select LLM backend: vllm
-Enter default endpoint: http://llm-server:8000
+Enter default endpoint: http://server-dev:8000
 Is your LLM endpoint authenticated? N
 Enter HuggingFace model tag: glm-4-9b-chat
 Select default model wrapper: chatml

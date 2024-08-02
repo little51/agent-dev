@@ -7,8 +7,9 @@
 ```shell
 # 创建虚拟环境
 conda create -n vllm python=3.10 -y
+# 激活虚拟环境
 conda activate vllm
-# 安装vllm及依赖库
+# 安装vllm及其他依赖库
 pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 验证是否安装成功
@@ -44,15 +45,20 @@ dataroot/models/Trelis/Meta-Llama-3-8B-Instruct-function-calling \
 ### （1）创建虚拟环境
 
 ```shell
+# 创建虚拟环境
 conda create -n autogpt python=3.10 -y
+# 激活虚拟环境
 conda activate autogpt
 ```
 
 ### （2）下载源码
 
 ```shell
+# clone源码
 git clone https://github.com/Significant-Gravitas/AutoGPT
+# 切换到源码目录
 cd AutoGPT
+# 检出历史版本
 git checkout 227cf41
 ```
 
@@ -62,9 +68,11 @@ git checkout 227cf41
 # 安装基础依赖库
 pip install -r requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
-# 安装forge组件
+# 切换到forge目录
 cd forge
+# 安装forge组件
 pip install -e . -i https://pypi.mirrors.ustc.edu.cn/simple
+# 切换回上一级目录
 cd ..
 ```
 
@@ -73,12 +81,14 @@ cd ..
 ### （1）配置
 
 ```shell
+# 复制配置文件
 cp ./autogpt/.env.template ./autogpt/.env
+# 编辑配置文件
 vi ./autogpt/.env
 # 配置OPENAI_API_KEY，满足AutoGPT对key的校验规则
 OPENAI_API_KEY=sk-proj-000000000000000000000000000000000000000000000000
 # 配置OpenAI兼容接口服务的URL
-OPENAI_API_BASE_URL=http://llm-server:8000/v1
+OPENAI_API_BASE_URL=http://server-dev:8000/v1
 # 禁用web搜索命令
 DISABLED_COMMANDS=web_search
 ```
@@ -86,7 +96,9 @@ DISABLED_COMMANDS=web_search
 ### （2）运行
 
 ```shell
+# 切换目录到autogpt
 cd autogpt
+# 运行autogpt
 python -m autogpt run --skip-news
 ```
 

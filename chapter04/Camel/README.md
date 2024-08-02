@@ -8,7 +8,7 @@ ollama pull llama3:8b-instruct-fp16
 # 修改模型名称为gpt-3.5-turbo
 ollama cp llama3:8b-instruct-fp16 gpt-3.5-turbo
 ollama rm llama3:8b-instruct-fp16
-# 运行模型（模型在http://llm-server:11434/v1提供服务）
+# 运行模型（模型在http://server-dev:11434/v1提供服务）
 ollama run gpt-3.5-turbo
 ```
 
@@ -32,10 +32,10 @@ pip install -e .[all] --use-pep517 \
 ```shell
 # Windows
 set OPENAI_API_KEY=EMPTY
-set OPENAI_API_BASE_URL=http://llm-server:11434/v1
+set OPENAI_API_BASE_URL=http://server-dev:11434/v1
 # Linux
 export OPENAI_API_KEY=EMPTY
-export OPENAI_API_BASE_URL=http://llm-server:11434/v1
+export OPENAI_API_BASE_URL=http://server-dev:11434/v1
 ```
 
 ## 四、Camel运行

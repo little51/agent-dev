@@ -45,7 +45,7 @@ rm -fr ./dataroot
 ```shell
 cp sample.config.toml config.toml
 vi config.toml
-# 配置API_ENDPOINTS->OLLAMA为http://llm-server:11434
+# 配置API_ENDPOINTS->OLLAMA为http://server-dev:11434
 ```
 
 ## 五、Devika运行

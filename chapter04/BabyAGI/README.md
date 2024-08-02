@@ -7,6 +7,7 @@
 ```shell
 # 创建虚拟环境
 conda create -n vllm python=3.10 -y
+# 激活虚拟环境
 conda activate vllm
 # 安装vllm及依赖库
 pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
@@ -51,12 +52,13 @@ python api_server.py \
 ```shell
 # 下载源码
 git clone https://github.com/git-cloner/babyagi.git
+# 切换到源码目录
 cd babyagi
-# 建立python3.10虚拟环境并激活
+# 建立虚拟环境
 conda create -n babyagi python=3.10 -y
+# 激活虚拟环境
 conda activate babyagi
 # 确认是否安装了编译环境
-gcc --version
 g++ --version
 # 如果未安装编译环境，则用以下命令安装
 sudo apt-get install build-essential
@@ -73,7 +75,7 @@ vi .env
 # 修改以下三个大模型相关参数
 LLM_MODEL=glm-4-9b-chat
 OPENAI_API_KEY= EMPTY
-OPENAI_API_BASE= http://llm-server:8000/v1
+OPENAI_API_BASE= http://server-dev:8000/v1
 # 目标任务在OBJECTIVE参数中设置
 ```
 
