@@ -37,10 +37,10 @@ python model_download.py --e \
 ### （3）运行API服务
 
 ```shell
-# 使用vllm改进版的api_server装载模型
+# 使用vllm改进版的vllm_api_server装载模型
 # 支持/v1/embeddings
 EMBEDDING_PATH=dataroot/models/BAAI/bge-small-en-v1.5 \
-python api_server.py \
+python vllm_api_server.py \
 --model dataroot/models/THUDM/glm-4-9b-chat \
 --served-model-name glm-4-9b-chat \
 --max-model-len 8192 \
@@ -70,7 +70,9 @@ pip install -r requirements.txt \
 ## 3、BabyAGI配置
 
 ```shell
+# 复制配置文件
 cp .env.example .env
+# 编辑配置文件
 vi .env
 # 修改以下三个大模型相关参数
 LLM_MODEL=glm-4-9b-chat

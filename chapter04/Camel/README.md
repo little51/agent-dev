@@ -7,20 +7,24 @@
 ollama pull llama3:8b-instruct-fp16
 # 修改模型名称为gpt-3.5-turbo
 ollama cp llama3:8b-instruct-fp16 gpt-3.5-turbo
+# 删除原始模型以节省空间
 ollama rm llama3:8b-instruct-fp16
-# 运行模型（模型在http://server-dev:11434/v1提供服务）
+# 运行模型（模型将在http://server-dev:11434/v1提供服务）
 ollama run gpt-3.5-turbo
 ```
 
 ## 二、Camel安装
 
 ```shell
-# 下载源码
+# clone源码
 git clone https://github.com/camel-ai/camel.git
+# 切换到源码目录
 cd camel
+# 检出历史版本
 git checkout a42d029
-# 建立python3.10虚拟环境并激活
+# 创建虚拟环境并
 conda create -n camel python=3.10 -y
+# 激活虚拟环境
 conda activate camel
 # 安装依赖库
 pip install -e .[all] --use-pep517 \
