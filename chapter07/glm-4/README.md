@@ -3,15 +3,20 @@
 ## 一、下载源码
 
 ```shell
+# clone源码
 git clone https://github.com/THUDM/GLM-4.git
+# 切换到源码目录
 cd GLM-4
+# 检出历史版本
 git checkout 468a56e
 ```
 
 ## 二、建立虚拟环境
 
 ```shell
+# 创建虚拟环境
 conda create -n glm4 python=3.10 -y
+# 激活虚拟环境
 conda activate glm4
 # 安装基础依赖库
 pip install -r basic_demo/requirements.txt \
@@ -24,6 +29,7 @@ pip install vllm==0.5.1 \
 ## 三、模型下载
 
 ```shell
+# 获取模型下载脚本
 wget https://e.aliendao.cn/model_download.py
 # 下载大语言模型到以下目录
 # dataroot/models/THUDM/glm-4-9b-chat

@@ -78,7 +78,7 @@ rm -fr ./dataroot/models/BAAI
 ### （1）配置
 
 ```shell
-# 执行以下命令进行配置
+# 运行以下命令进行配置
 memgpt configure
 # 以下为选项
 Select LLM inference provider: local
