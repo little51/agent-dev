@@ -3,11 +3,11 @@
 ## 一、安装虚拟环境
 
 ```shell
-# 1、创建虚拟环境
+# 创建虚拟环境
 conda create -n cogvlm2 python=3.10 -y
-# 2、激活虚拟环境
+# 激活虚拟环境
 conda activate cogvlm2
-# 3、安装依赖库
+# 安装依赖库
 pip install -r requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
@@ -30,9 +30,12 @@ python model_download.py --e \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate cogvlm2
+# 测试图片理解功能
 python cogvlm2_chat.py
+# 测试完整功能
 python image_search.py
-# 访问 http://172.16.62.167:7860/
+# 访问 http://server-dev:7860/
 ```
 

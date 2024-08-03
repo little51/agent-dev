@@ -30,7 +30,9 @@ python model_download.py --e \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate llamaindex
+# 运行程序
 python llamaindex-sample.py
 # 测试问题：LlamaIndex案例
 ```

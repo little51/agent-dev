@@ -14,7 +14,7 @@ pip install agentscope==0.0.6a2 \
 
 ## 二、大语言模型服务安装配置
 
-### （1）创建vLLM虚拟环境
+### （1）建立vLLM虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -54,7 +54,9 @@ dataroot/models/THUDM/glm-4-9b-chat \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate agentscope
+# 运行程序
 python agentscope-sample.py
 # 测试问题1
 使用python编程，实现递归列出当前目录下的所有文件，包含子目录，并执行程序

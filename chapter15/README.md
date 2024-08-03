@@ -6,6 +6,7 @@
 ```shell
 # 1、获取服务代码
 git clone https://github.com/little51/agent-dev
+# 切换到源码目录
 cd agent-dev/chapter15
 # 2、创建虚拟环境
 conda create -n qwen-vl python=3.10 -y
@@ -49,10 +50,12 @@ pip install gradio==4.37.2 \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate qwen-agent
+# 运行程序
 python qwen-agent-sample.py
 # 测试
-# 访问：http://172.16.62.167:7860/
+# 访问：http://server-dev:7860/
 # 输入
 # 文本：识别图片中的方程组
 # 图片：test1.png 或 test2.png

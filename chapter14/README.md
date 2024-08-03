@@ -33,7 +33,9 @@ python -m vllm.entrypoints.openai.api_server \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate crewai
+# 运行程序
 python crewai-sample.py
 #测试问题：设计一个AI Agent应用，辅助开发人员完成开发任务
 ```

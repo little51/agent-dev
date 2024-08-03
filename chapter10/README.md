@@ -54,7 +54,9 @@ dataroot/models/THUDM/glm-4-9b-chat \
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate langchain
+# 运行程序
 python langchain-plan-execute.py
 # 测试问题：圆周率的概念，圆周率保留到小数点后6位是多少？它的2次方是多少？
 ```

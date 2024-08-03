@@ -23,7 +23,9 @@ ollama run llama3:8b-instruct-fp16
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate autogen
+# 运行程序
 python autogen-sample.py
 # 测试问题：生成格式为：{"instruction":"指令","input":"","output":"指令的答案"}的大约10条人工智能训练集，并进行JSON格式校验
 ```

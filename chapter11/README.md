@@ -1,6 +1,6 @@
 # LangGraph案例
 
-## 一、创建虚拟环境
+## 一、建立虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -30,6 +30,8 @@ python openai_api_server.py
 ## 三、运行程序
 
 ```shell
+# 激活虚拟环境
 conda activate langgraph
+# 运行程序
 python langgraph-sample.py
 ```
