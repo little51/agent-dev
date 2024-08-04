@@ -37,7 +37,8 @@ python model_download.py --e \
 python -m vllm.entrypoints.openai.api_server \
 --model \
 dataroot/models/Trelis/Meta-Llama-3-8B-Instruct-function-calling \
---served-model-name gpt-3.5-turbo
+--served-model-name gpt-3.5-turbo \
+--disable-log-stats
 ```
 
 ## 2、AutoGPT安装配置
@@ -72,6 +73,8 @@ pip install -r requirements.txt \
 cd forge
 # 安装forge组件
 pip install -e . -i https://pypi.mirrors.ustc.edu.cn/simple
+# 重装pydantic组件
+pip install pydantic==1.10.9 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 切换回上一级目录
 cd ..
 ```

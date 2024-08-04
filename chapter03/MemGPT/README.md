@@ -35,7 +35,8 @@ python -m vllm.entrypoints.openai.api_server \
 --model dataroot/models/THUDM/glm-4-9b-chat \
 --served-model-name glm-4-9b-chat \
 --max-model-len 8192 \
---trust-remote-code
+--trust-remote-code \
+--disable-log-stats
 ```
 
 ## 2、MemGPT安装配置  
@@ -48,7 +49,8 @@ conda create -n memgpt python=3.10 -y
 # 激活虚拟环境
 conda activate memgpt
 # 安装pymemgpt
-pip install 'pymemgpt[local]' -i https://pypi.mirrors.ustc.edu.cn/simple
+pip install pymemgpt[local]==0.3.22 \
+-i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ### （2）下载向量模型
@@ -58,8 +60,9 @@ pip install 'pymemgpt[local]' -i https://pypi.mirrors.ustc.edu.cn/simple
 mkdir memgpt
 # 切换到工作目录
 cd memgpt
-# 下载模型
+# 获取模型下载脚本
 wget https://e.aliendao.cn/model_download.py
+# 下载模型
 python model_download.py --e \
 --repo_id BAAI/bge-small-en-v1.5 \
 --token YPY8KHDQ2NAHQ2SG
@@ -70,7 +73,7 @@ mkdir -p BAAI/bge-small-en-v1.5
 cp -R ./dataroot/models/BAAI/bge-small-en-v1.5/* \
 ./BAAI/bge-small-en-v1.5/
 # 删除原目录
-rm -fr ./dataroot/models/BAAI
+rm -fr ./dataroot
 ```
 
 ## 3、AutoGPT智体应用
