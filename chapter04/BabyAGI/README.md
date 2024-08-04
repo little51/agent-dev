@@ -1,8 +1,8 @@
 # BabyAGI实践
 
-## 1、大语言模型服务安装配置
+## 一、大语言模型服务安装配置
 
-### （1）建立虚拟环境
+### 1、建立虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -17,7 +17,7 @@ sentence-transformers==3.0.1 \
 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
-### （2）下载模型
+### 2、下载模型
 
 ```shell
 # 获取模型下载脚本
@@ -34,7 +34,7 @@ python model_download.py --e \
 --token YPY8KHDQ2NAHQ2SG
 ```
 
-### （3）运行API服务
+### 3、运行API服务
 
 ```shell
 # 使用vllm改进版的vllm_api_server装载模型
@@ -44,10 +44,11 @@ python vllm_api_server.py \
 --model dataroot/models/THUDM/glm-4-9b-chat \
 --served-model-name glm-4-9b-chat \
 --max-model-len 8192 \
---trust-remote-code
+--trust-remote-code \
+--disable-log-stats
 ```
 
-## 2、BabyAGI安装
+## 二、BabyAGI安装
 
 ```shell
 # 下载源码
@@ -58,16 +59,12 @@ cd babyagi
 conda create -n babyagi python=3.10 -y
 # 激活虚拟环境
 conda activate babyagi
-# 确认是否安装了编译环境
-g++ --version
-# 如果未安装编译环境，则用以下命令安装
-sudo apt-get install build-essential
 # 安装依赖库
 pip install -r requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
-## 3、BabyAGI配置
+## 三、BabyAGI配置
 
 ```shell
 # 复制配置文件
@@ -81,9 +78,12 @@ OPENAI_API_BASE= http://server-dev:8000/v1
 # 目标任务在OBJECTIVE参数中设置
 ```
 
-## 4、BabyAGI运行
+## 四、BabyAGI运行
 
 ```shell
+# 激活虚拟环境
+conda activate babyagi
+# 运行程序
 TABLE_NAME=test python babyagi.py
 ```
 

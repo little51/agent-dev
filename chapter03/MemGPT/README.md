@@ -1,8 +1,8 @@
 # MemGPT应用
 
-## 1、大语言模型服务安装配置
+## 一、大语言模型服务安装配置
 
-### （1）建立虚拟环境
+### 1、建立虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -16,7 +16,7 @@ pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
-### （2）下载模型
+### 2、下载模型
 
 ```shell
 # 获取模型下载脚本
@@ -27,7 +27,7 @@ python model_download.py --e --repo_id THUDM/glm-4-9b-chat \
 --token YPY8KHDQ2NAHQ2SG
 ```
 
-### （3）运行API服务
+### 3、运行API服务
 
 ```shell
 # 使用vLLM的api_server装载模型
@@ -39,9 +39,9 @@ python -m vllm.entrypoints.openai.api_server \
 --disable-log-stats
 ```
 
-## 2、MemGPT安装配置  
+## 二、MemGPT安装配置  
 
-### （1）建立虚拟环境
+### 1、建立虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -53,7 +53,7 @@ pip install pymemgpt[local]==0.3.22 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
-### （2）下载向量模型
+### 2、下载向量模型
 
 ```shell
 # 建立工作目录
@@ -76,9 +76,9 @@ cp -R ./dataroot/models/BAAI/bge-small-en-v1.5/* \
 rm -fr ./dataroot
 ```
 
-## 3、AutoGPT智体应用
+## 三、AutoGPT智体应用
 
-### （1）配置
+### 1、配置
 
 ```shell
 # 运行以下命令进行配置
@@ -102,7 +102,7 @@ rm -fr ~/.memgpt/
 memgpt configure
 ```
 
-### （2）运行
+### 2、运行
 
 ```shell
 memgpt run --agent agent_test

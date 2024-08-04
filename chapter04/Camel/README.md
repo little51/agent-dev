@@ -22,7 +22,7 @@ git clone https://github.com/camel-ai/camel.git
 cd camel
 # 检出历史版本
 git checkout a42d029
-# 创建虚拟环境并
+# 创建虚拟环境
 conda create -n camel python=3.10 -y
 # 激活虚拟环境
 conda activate camel
@@ -45,7 +45,9 @@ export OPENAI_API_BASE_URL=http://server-dev:11434/v1
 ## 四、Camel运行
 
 ```shell
-# run
+# 激活虚拟环境
+conda activate camel
+# 运行程序
 python examples/ai_society/role_playing.py
 # 汉化
 prompt加OUTPUT IN CHINESE

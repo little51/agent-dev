@@ -1,8 +1,8 @@
 # AutoGPT应用
 
-## 1、大语言模型服务安装配置
+## 一、大语言模型服务安装配置
 
-### （1）建立虚拟环境
+### 1、建立虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -16,7 +16,7 @@ pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
-### （2）下载模型
+### 2、下载模型
 
 ```shell
 # 获取模型下载脚本
@@ -28,7 +28,7 @@ python model_download.py --e \
 --token YPY8KHDQ2NAHQ2SG
 ```
 
-### （3）运行API服务
+### 3、运行API服务
 
 ```shell
 # 使用vLLM的api_server装载模型
@@ -41,9 +41,9 @@ dataroot/models/Trelis/Meta-Llama-3-8B-Instruct-function-calling \
 --disable-log-stats
 ```
 
-## 2、AutoGPT安装配置
+## 二、AutoGPT安装配置
 
-### （1）创建虚拟环境
+### 1、创建虚拟环境
 
 ```shell
 # 创建虚拟环境
@@ -52,7 +52,7 @@ conda create -n autogpt python=3.10 -y
 conda activate autogpt
 ```
 
-### （2）下载源码
+### 2、下载源码
 
 ```shell
 # clone源码
@@ -63,7 +63,7 @@ cd AutoGPT
 git checkout 227cf41
 ```
 
-### （3）安装依赖库
+### 3、安装依赖库
 
 ```shell
 # 安装基础依赖库
@@ -79,9 +79,9 @@ pip install pydantic==1.10.9 -i https://pypi.mirrors.ustc.edu.cn/simple
 cd ..
 ```
 
-## 3、AutoGPT智体应用
+## 三、AutoGPT智体应用
 
-### （1）配置
+### 1、配置
 
 ```shell
 # 复制配置文件
@@ -96,7 +96,7 @@ OPENAI_API_BASE_URL=http://server-dev:8000/v1
 DISABLED_COMMANDS=web_search
 ```
 
-### （2）运行
+### 2、运行
 
 ```shell
 # 切换目录到autogpt
