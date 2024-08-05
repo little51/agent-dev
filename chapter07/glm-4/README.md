@@ -46,12 +46,21 @@ python model_download.py --e \
 ## 四、运行Chat应用
 
 ```shell
+# 激活虚拟环境
+conda activate glm4
+# 降低transformer版本（glm4-gradio.py在transformer4.43.3版本下运行时，会出现错误：AttributeError: 'GenerationConfig' object has no attribute '_eos_token_tensor'）
+pip install transformers==4.40.2 \
+-i https://pypi.mirrors.ustc.edu.cn/simple
+# 运行程序
 python glm4-gradio.py
 ```
 
 ## 五、运行api_server
 
 ```shell
+# 激活虚拟环境
+conda activate glm4
+# 运行程序
 MODEL_PATH=dataroot/models/THUDM/glm-4-9b-chat \
 EMBEDDING_PATH=dataroot/models/BAAI/bge-m3 \
 python openai_api_server.py
@@ -69,8 +78,8 @@ python convert_data.py
 
 ```shell
 # 修改finetune_demo/requirements.txt文件
-# 1、注释掉datasets>2.20.0
-#datasets>2.20.0
+# 1、修改datasets>2.20.0为
+datasets==2.20.0
 # 2、增加一行
 transformers==4.40.2
 # 安装依赖库

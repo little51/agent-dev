@@ -7,7 +7,7 @@ from threading import Thread
 from time import sleep
 import gradio as gr
 
-os.environ["OPENAI_API_BASE"] = "http://172.16.62.167:8000/v1"
+os.environ["OPENAI_API_BASE"] = "http://server-dev:8000/v1"
 os.environ["OPENAI_MODEL_NAME"] = "glm-4-9b-chat"
 os.environ["OPENAI_API_KEY"] = "EMPTY"
 

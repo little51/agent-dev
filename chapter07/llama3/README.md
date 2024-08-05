@@ -40,12 +40,18 @@ python model_download.py --e \
 ## 二、Chat应用
 
 ```bash
+# 激活虚拟环境
+conda activate llama3
+# 运行程序
 python llama3-gradio.py
 # 访问http://server-dev:6006/
 ```
 ## 三、LLama3服务开发
 
 ```bash
+# 激活虚拟环境
+conda activate llama3
+# 运行程序
 python llama3-api.py
 ```
 

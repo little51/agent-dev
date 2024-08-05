@@ -23,8 +23,7 @@ conda activate devika
 pip install -r requirements.txt \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 安装playwright
-playwright install --with-deps \
--i https://pypi.mirrors.ustc.edu.cn/simple
+playwright install --with-deps
 # 安装curl-cffi
 pip install curl-cffi==0.6.4 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
@@ -62,6 +61,9 @@ vi config.toml
 ### 1、服务器端
 
 ```shell
+# 激活虚拟环境
+conda activate devika
+# 运行服务程序
 python devika.py
 ```
 
@@ -70,15 +72,12 @@ python devika.py
 #### （1）Node.js安装
 
 ```shell
-# 安装 nvm (Node.js版本管理器)
-curl -o- \
-https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-# 下载安装Node.js (需要重连ssh)
-nvm install 20
-# 验证安装结果
-node -v # 应显示`v20.15.0`
-# 验证npm
-npm -v # 应显示 `10.7.0`
+# 添加Node.js到apt存储库
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+# 安装Node.js
+sudo apt update && sudo apt install -y nodejs
+# 验证npm（显示Node.js的版本号）
+node -v
 ```
 
 #### （2）安装依赖库
@@ -86,6 +85,8 @@ npm -v # 应显示 `10.7.0`
 ```shell
 # 切换到ui目录
 cd ui
+# 指定npm使用淘宝镜像加速
+npm config set registry https://registry.npmmirror.com
 # 安装依赖库
 npm i
 ```

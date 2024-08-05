@@ -12,11 +12,12 @@ export default defineConfig({
     port: 3001,
     proxy: {
       '/api': { 
-        target: 'http://172.16.62.37:1337/api',
-        changeOrigin: true
+        target: 'http://server-dev:1337/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       },
       '/socket.io': {
-        target: 'ws://172.16.62.37:1337',
+        target: 'ws://server-dev:1337',
         ws: true
       }
    }

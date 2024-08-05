@@ -13,7 +13,7 @@ from llama_index.llms.openai import OpenAI
 from llama_index.agent.openai import OpenAIAgent
 
 llm = OpenAI(model="gpt-4",
-             api_base="http://172.16.62.167:8000/v1",
+             api_base="http://server-dev:8000/v1",
              api_key="EMPTY")
 
 Settings.llm = llm
@@ -95,5 +95,5 @@ if __name__ == "__main__":
     if agent is None:
         print("索引装载失败")
         exit()
-    response = agent.chat("LlamaIndex")
+    response = agent.chat("检索LlamaIndex")
     print(response)

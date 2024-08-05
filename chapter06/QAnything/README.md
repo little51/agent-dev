@@ -40,11 +40,15 @@ https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda
 ```shell
 vi scripts/run_for_openai_api_with_cpu_in_Linux_or_WSL.sh
 # 第一处修改：https://api.openai.com/v1换成http://server-dev:11434/v1
-# 第二处修改：gpt-3.5-turbo-1106换成llama3
+# 第二处修改：sk-xxx换成sk-000
+# 第三处修改：gpt-3.5-turbo-1106换成llama3
 ```
 
 ## 五、QAnything运行
 ```shell
+# 激活虚拟环境
+conda activate qanything-python
+# 运行程序
 bash scripts/run_for_openai_api_with_cpu_in_Linux_or_WSL.sh
 # 在浏览器访问：http://server-dev:8777/qanything/
 ```

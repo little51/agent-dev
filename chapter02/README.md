@@ -206,7 +206,7 @@ curl --location --request POST http://127.0.0.1:8000/v1/chat/completions --heade
 # 下载源码
 git clone https://github.com/little51/agent-dev
 # 进入服务源码目录
-cd agent-dev/chapter07/glm4
+cd agent-dev/chapter07/glm-4
 # 创建虚拟环境
 conda create -n glm4 python=3.10 -y
 # 激活虚拟环境

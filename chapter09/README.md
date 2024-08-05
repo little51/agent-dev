@@ -47,6 +47,7 @@ python -m vllm.entrypoints.openai.api_server \
 --model \
 dataroot/models/THUDM/glm-4-9b-chat \
 --served-model-name glm-4-9b-chat \
+--max-model-len 8192 \
 --trust-remote-code \
 --disable-log-stats
 ```

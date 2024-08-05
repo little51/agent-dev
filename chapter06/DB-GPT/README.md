@@ -3,10 +3,10 @@
 ## 一、大语言模型服务安装配置
 
 ```shell
-# 运行qwen-0.5b模型
-ollama run qwen:0.5b
-# 运行nomic-embed-text模型
-ollama run nomic-embed-text
+# 从Ollama镜像库获取qwen-0.5b模型
+ollama pull qwen:0.5b
+# 从Ollama镜像库获取nomic-embed-text模型
+ollama pull nomic-embed-text
 ```
 
 ## 二、DB-GPT安装
@@ -19,14 +19,14 @@ cd DB-GPT
 # 检出历史版本
 git checkout 374b6ad
 # 创建虚拟环境
-conda create -n dbgpt_env python=3.10 -y
+conda create -n dbgpt python=3.10 -y
 # 激活虚拟环境
-conda activate dbgpt_env
+conda activate dbgpt
 # 安装依赖库
 pip install -e ".[default]" --use-pep517 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 安装mysql驱动
-pip intall pymysql -i https://pypi.mirrors.ustc.edu.cn/simple
+pip install pymysql==1.1.1 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ## 三、配置模型
@@ -49,5 +49,8 @@ proxy_ollama_proxy_backend="nomic-embed-text:latest"
 ## 四、DB-GPT运行
 
 ```shell
+# 激活虚拟环境
+conda activate dbgpt
+# 运行程序
 python dbgpt/app/dbgpt_server.py
 ```

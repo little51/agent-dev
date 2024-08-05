@@ -3,9 +3,9 @@ import gradio as gr
 
 config_list = [
     {"model": "glm-4-9b-chat",
-     "base_url": "http://172.16.62.167:8000/v1",
+     "base_url": "http://server-dev:8000/v1",
      "api_key": "EMPTY",
-     "stream": True,
+     "stream": False,
      "cache_seed": None
      }
 ]

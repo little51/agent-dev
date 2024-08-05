@@ -12,7 +12,7 @@ import gradio as gr
 
 
 openai_params = {
-    "base_url": "http://172.16.62.167:8000/v1",
+    "base_url": "http://server-dev:8000/v1",
     "api_key": "EMPTY",
     "model_name": "glm-4-9b-chat",
     "max_tokens": 2048,

@@ -3,7 +3,7 @@ from openai import OpenAI
 import sympy as sp
 
 client = OpenAI(
-    base_url="http://172.16.62.167:8000/v1",
+    base_url="http://server-dev:8000/v1",
     api_key="EMPTY"
 )
 
