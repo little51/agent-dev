@@ -242,6 +242,6 @@ python openai_api_server.py
 #### （4）测试
 
 ```shell
-curl --location --request POST http://127.0.0.1:8000/v1/chat/completions --header Content-Type: application/json --data-raw "{\"model\": \"llama3\",\"messages\": [{\"role\": \"user\",\"content\": \"你好\"}]}"
+curl --location --request POST http://127.0.0.1:8000/v1/chat/completions --header Content-Type: application/json --data-raw "{\"model\": \"glm-4-9b-chat\",\"messages\": [{\"role\": \"user\",\"content\": \"你好\"}]}"
 ```
 

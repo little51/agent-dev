@@ -86,7 +86,7 @@ conda activate babyagi
 # 运行程序(Linux)
 TABLE_NAME=test python babyagi.py
 # 运行程序(Windows)
-export TABLE_NAME=test
+set TABLE_NAME=test
 python babyagi.py
 ```
 
