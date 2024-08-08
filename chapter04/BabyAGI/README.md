@@ -83,7 +83,10 @@ OPENAI_API_BASE= http://server-dev:8000/v1
 ```shell
 # 激活虚拟环境
 conda activate babyagi
-# 运行程序
+# 运行程序(Linux)
 TABLE_NAME=test python babyagi.py
+# 运行程序(Windows)
+export TABLE_NAME=test
+python babyagi.py
 ```
 
