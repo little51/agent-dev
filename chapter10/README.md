@@ -1,6 +1,6 @@
-# LangChain案例
+# Langchain应用开发
 
-## 一、安装LangChain
+## 一、安装Langchain
 
 ```shell
 # 创建虚拟环境

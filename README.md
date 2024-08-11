@@ -1,1 +1,18 @@
-# agent-dev
+# 大模型项目实战：Agent开发与应用
+
+[第1章 Agent基础知识](https://github.com/little51/agent-dev/tree/main/chapter01)
+[第2章Agent应用与开发环境搭建](https://github.com/little51/agent-dev/tree/main/chapter02)
+[第3章 通用型Agent应用](https://github.com/little51/agent-dev/tree/main/chapter03)
+[第4章 任务驱动型Agent应用](https://github.com/little51/agent-dev/tree/main/chapter04)
+[第5章 辅助开发型Agent应用](https://github.com/little51/agent-dev/tree/main/chapter05)
+[第6章 检索增强型Agent应用](https://github.com/little51/agent-dev/tree/main/chapter06)
+[第7章 大语言模型服务开发与微调](https://github.com/little51/agent-dev/tree/main/chapter07)
+[第8章 基于GLM-4的Function-Calling应用开发](https://github.com/little51/agent-dev/tree/main/chapter08)
+[第9章 基于Agentscope的ReActAgent应用开发](https://github.com/little51/agent-dev/tree/main/chapter09)
+[第10章 基于Langchain的任务驱动应用开发](https://github.com/little51/agent-dev/tree/main/chapter10)
+[第11章 基于LangGraph的工作流Agent应用开发](https://github.com/little51/agent-dev/tree/main/chapter11)
+[第12章 基于Autogen的辅助编程Agent应用开发](https://github.com/little51/agent-dev/tree/main/chapter12)
+[第13章 基于LlamaIndex的检索增强应用开发](https://github.com/little51/agent-dev/tree/main/chapter13)
+[第14章 基于crewAI的多角色Agent应用开发](https://github.com/little51/agent-dev/tree/main/chapter14)
+[第15章 基于Qwen-Agent的图像应用开发](https://github.com/little51/agent-dev/tree/main/chapter15)
+[第16章 基于CogVLM2的多模态应用开发](https://github.com/little51/agent-dev/tree/main/chapter16)

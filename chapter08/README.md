@@ -1,4 +1,4 @@
-# GLM-4 Function-calling案例
+# GLM-4 Function-calling应用开发
 
 ## 一、创建虚拟环境
 

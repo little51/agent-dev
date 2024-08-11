@@ -1,4 +1,4 @@
-# QAnything实践
+# QAnything应用
 
 ## 一、大语言模型服务安装配置
 

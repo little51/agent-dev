@@ -1,4 +1,4 @@
-# LlamaIndex案例
+# LlamaIndex应用开发
 
 ## 一、安装LlamaIndex
 

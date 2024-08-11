@@ -1,4 +1,4 @@
-# CodeFuse-ChatBot实践
+# CodeFuse-ChatBot应用
 
 ## 一、CodeFuse-ChatBot安装
 

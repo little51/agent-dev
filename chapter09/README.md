@@ -1,4 +1,4 @@
-# Agentscope案例
+# Agentscope应用开发
 
 ## 一、安装Agentscope
 

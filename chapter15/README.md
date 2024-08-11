@@ -1,4 +1,4 @@
-# Qwen-Agent案例
+# Qwen-Agent应用开发
 
 
 ## 一、Qwen-VL服务安装配置

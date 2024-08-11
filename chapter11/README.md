@@ -1,4 +1,4 @@
-# LangGraph案例
+# LangGraph应用开发
 
 ## 一、建立虚拟环境
 
