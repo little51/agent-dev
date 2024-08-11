@@ -52,7 +52,7 @@ python vllm_api_server.py \
 
 ```shell
 # 下载源码
-git clone https://github.com/git-cloner/babyagi.git
+git clone https://github.com/git-cloner/babyagi
 # 切换到源码目录
 cd babyagi
 # 建立虚拟环境

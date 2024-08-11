@@ -17,7 +17,7 @@ ollama run gpt-3.5-turbo
 
 ```shell
 # clone源码
-git clone https://github.com/camel-ai/camel.git
+git clone https://github.com/camel-ai/camel
 # 切换到源码目录
 cd camel
 # 检出历史版本

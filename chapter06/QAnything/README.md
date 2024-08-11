@@ -14,7 +14,7 @@ conda create -n qanything-python python=3.10 -y
 # 激活虚拟环境
 conda activate qanything-python
 # clone源码
-git clone -b qanything-python https://github.com/little51/QAnything.git
+git clone -b qanything-python https://github.com/little51/QAnything
 # 切换到源码目录
 cd QAnything
 # 安装依赖库

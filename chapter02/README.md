@@ -166,7 +166,7 @@ conda create -n vllm python=3.10 -y
 # 激活虚拟环境
 conda activate vllm
 # 安装vllm及依赖库
-pip install vllm==0.4.3 modelscope==1.16.0 \
+pip install vllm==0.4.3 modelscope==1.15.0 numpy==1.24.2 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 

@@ -4,7 +4,7 @@
 
 ```shell
 # 创建虚拟环境
-conda create --name devopsgpt python=3.10 -y
+conda create --name devopsgpt python=3.9 -y
 # 激活虚拟环境
 conda activate devopsgpt
 # clone源码

@@ -10,7 +10,7 @@ ollama run llama3:8b-instruct-fp16
 
 ```shell
 # clone源码
-git clone https://github.com/stitionai/devika.git
+git clone https://github.com/stitionai/devika
 # 切换到源码目录
 cd devika
 # 检出历史版本

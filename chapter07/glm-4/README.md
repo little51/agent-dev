@@ -4,7 +4,7 @@
 
 ```shell
 # clone源码
-git clone https://github.com/THUDM/GLM-4.git
+git clone https://github.com/THUDM/GLM-4
 # 切换到源码目录
 cd GLM-4
 # 检出历史版本
