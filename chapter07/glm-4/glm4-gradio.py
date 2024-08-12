@@ -48,7 +48,7 @@ def load_model_and_tokenizer_lora(model_path):
 
 def predict(input, chatbot, max_length, top_p, temperature,
             history, past_key_values):
-    """预测函数"""
+    """推理函数"""
     chatbot.append(input)
     for response, history, past_key_values in model.stream_chat(
             tokenizer, input, history,
