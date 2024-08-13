@@ -15,7 +15,7 @@ sudo apt install g++
 sudo apt install make
 # 安装新版gcc
 sudo apt install gcc-12
-# 链接cc命令到新片gcc
+# 链接cc命令到新版gcc
 sudo ln -sf /usr/bin/gcc-12 /etc/alternatives/cc
 ```
 

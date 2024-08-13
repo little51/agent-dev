@@ -33,7 +33,7 @@ def generate(image_path: str):
     image = Image.open(image_path).convert('RGB')
     input_by_model = model.build_conversation_input_ids(
         tokenizer,
-        query="图里是什么？只需要输出图里的文本本身",
+        query="图里是什么？",
         history=[],
         images=[image],
         template_version='chat'
