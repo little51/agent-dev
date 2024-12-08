@@ -83,7 +83,7 @@ def init_agent():
 
 
 def chat_langchain(query: str, history: list):
-    # 构建提示词
+    # 提示词组装
     prompt_template = PromptTemplate.from_template(
         "搜索一下以下问题：{query}，并进行分析，" +
         "如果问题中含有数学计算，请用计算器进行计算," +
@@ -92,8 +92,9 @@ def chat_langchain(query: str, history: list):
     prompt = prompt_template.format(query=query)
     answer = "### 提示词：\n" + prompt + "\nAgent正在运行，请稍候... ..."
     yield answer
-    # Agent计划和执行
+    # Agent初始化
     agent = init_agent()
+    # Agent运行
     try:
         response = agent.invoke(prompt)
     except Exception as e:
