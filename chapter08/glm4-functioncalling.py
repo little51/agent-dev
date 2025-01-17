@@ -104,7 +104,7 @@ def parse_llm_response(model_response, messages):
 def llm_call(message: str):
     messages = []
     messages.append({"role": "system", "content":
-                     "你是一个精通数学计算的人工智能助理"})
+        "你是一个精通数学计算的人工智能助理"})
     messages.append({"role": "user", "content": message})
     response = client.chat.completions.create(
         model=model_name,

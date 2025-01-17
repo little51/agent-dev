@@ -13,6 +13,9 @@ pip install openai==1.35.12 \
 # 安装依赖库sympy
 pip install sympy==1.13.1 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
+# 降级httpx
+pip install httpx==0.27.2 \
+-i https://pypi.mirrors.ustc.edu.cn/simple
 ```
 
 ## 二、大语言模型服务安装配置
