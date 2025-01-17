@@ -25,8 +25,9 @@ def load_docs(directory):
 
 
 def split_docs(documents):
-    text_splitter = CharacterTextSplitter(chunk_size=150,
-                                          chunk_overlap=20)
+    text_splitter = CharacterTextSplitter(
+        chunk_size=150,
+        chunk_overlap=20)
     split_docs = text_splitter.split_documents(documents)
     return split_docs
 
