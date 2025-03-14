@@ -2,6 +2,8 @@
 
 ## 书中的源代码、操作步骤等配套资源
 
+[可直接体验的书中实例：https://gitclone.com/aiit/agenthub/](https://gitclone.com/aiit/agenthub/)
+
 [图书出版社官方直营：https://item.jd.com/10140881945867.html](https://item.jd.com/10140881945867.html)
 
 ![](https://gitclone.com/download1/ai-agent/agent-dev.png)
