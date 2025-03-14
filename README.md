@@ -1,5 +1,11 @@
 # 《大模型项目实战：Agent开发与应用》配套资源
 
+## 书中的源代码、操作步骤等配套资源
+
+[图书出版社官方直营：https://item.jd.com/10140881945867.html](https://item.jd.com/10140881945867.html)
+
+![](https://gitclone.com/download1/ai-agent/agent-dev.png)
+
 ## 基础篇
 
 ### [第1章 Agent基础知识](https://github.com/little51/agent-dev/tree/main/chapter01)<br>
