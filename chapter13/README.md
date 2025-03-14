@@ -1,4 +1,4 @@
-# LlamaIndex应用开发
+# 基于LlamaIndex的应用开发
 
 ## 一、安装LlamaIndex
 

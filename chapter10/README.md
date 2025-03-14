@@ -1,4 +1,4 @@
-# Langchain应用开发
+# 基于Langchain的应用开发
 
 ## 一、安装Langchain
 

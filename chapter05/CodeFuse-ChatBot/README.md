@@ -1,4 +1,4 @@
-# CodeFuse-ChatBot应用
+# 辅助开发型：CodeFuse-ChatBot应用
 
 ## 一、CodeFuse-ChatBot安装
 

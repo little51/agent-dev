@@ -1,4 +1,4 @@
-# Agentscope应用开发
+# 基于Agentscope的应用开发
 
 ## 一、安装Agentscope
 

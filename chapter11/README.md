@@ -1,4 +1,4 @@
-# LangGraph应用开发
+# 基于LangGraph的应用开发
 
 ## 一、建立虚拟环境
 
