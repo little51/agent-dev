@@ -8,6 +8,10 @@
 
 ![](https://gitclone.com/download1/ai-agent/agent-dev1.png)
 
+## 本书技术交流群
+
+![](https://gitclone.com/download1/aliendao/aliendao1.jpg)
+
 ## 基础篇
 
 ### [第1章 Agent基础知识](https://github.com/little51/agent-dev/tree/main/chapter01)<br>
