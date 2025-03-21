@@ -6,9 +6,9 @@
 
 [图书出版社官方直营：https://item.jd.com/10140881945867.html](https://item.jd.com/10140881945867.html)
 
-## [勘误](https://github.com/little51/agent-dev/issues)
-
 ![](https://gitclone.com/download1/ai-agent/agent-dev1.png)
+
+## [勘误](https://github.com/little51/agent-dev/issues)
 
 ## 本书技术交流群
 
