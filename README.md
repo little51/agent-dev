@@ -13,6 +13,7 @@
 ## 本书技术交流群
 
 ![](https://gitclone.com/download1/aliendao/aliendao20250402.jpg)
+![](https://gitclone.com/download1/aliendao/weixin-aliendao.jpg)
 
 ## 基础篇
 
