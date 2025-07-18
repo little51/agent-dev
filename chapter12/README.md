@@ -7,8 +7,8 @@
 conda create -n autogen python=3.10 -y
 # 激活虚拟环境
 conda activate autogen
-# 安装依赖库pyautogen
-pip install pyautogen==0.2.18 \
+# 安装依赖库ag2
+pip install ag2==0.2.18 \
 -i https://pypi.mirrors.ustc.edu.cn/simple
 # 安装依赖库gradio
 pip install gradio==4.37.2 \
