@@ -7,6 +7,7 @@
 [图书出版社官方直营：https://item.jd.com/10140881945867.html](https://item.jd.com/10140881945867.html)
 
 ![](https://gitclone.com/download1/ai-agent/agent-dev1.png)
+![](https://gitclone.com/download1/llm-dev/llm-dev.png)
 
 ## [勘误](https://github.com/little51/agent-dev/issues)
 
