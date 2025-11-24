@@ -11,9 +11,8 @@
 
 ## [勘误](https://github.com/little51/agent-dev/issues)
 
-## 本书技术交流群
+## 异型岛微信公众号
 
-![](https://gitclone.com/download1/aliendao/aliendao20251117.jpg)
 ![](https://gitclone.com/download1/aliendao/weixin-aliendao2.jpg)
 
 ## 基础篇
