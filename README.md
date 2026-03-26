@@ -9,6 +9,7 @@
 ![](https://gitclone.com/download1/ai-agent/agent-dev1.png)
 ![](https://gitclone.com/download1/llm-dev/llm-dev.png)
 ![](https://gitclone.com/download1/llm-dev/A2A.png)
+![](https://gitclone.com/download1/llm-dev/deepseek-dev.png)
 
 ## [勘误](https://github.com/little51/agent-dev/issues)
 
